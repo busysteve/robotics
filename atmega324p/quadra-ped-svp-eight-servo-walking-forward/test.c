@@ -113,6 +113,7 @@ int main()
 
 	while(1)  // Loop forever.
 	{
+		int i;
 		delay_ms(200);
 		// When the user presses the top button, execute a pre-programmed
 		// sequence of servo movements.
@@ -155,8 +156,8 @@ int main()
 		}
 
 		if (button_is_pressed(TOP_BUTTON))
-		{
-			int wait = 300;
+		while(1){
+			int wait = 400;
 	
 			servo_move( FRONT_RIGHT_LEG, f_forward, 0 );
 			servo_move( FRONT_LEFT_LEG, f_forward, 0 );
@@ -167,7 +168,8 @@ int main()
 			servo_move( REAR_RIGHT_KNEE, b_down, 0 );
 			servo_move( REAR_LEFT_KNEE, b_down, 0 );
 
-			while(1)
+			// Walking forward
+			for( i=0; i < 8; i++ )
 			{
 				int up_wait = 0;
 				int forward_wait = 0;
@@ -202,6 +204,7 @@ int main()
 				change_wait( &wait ); delay_ms( wait / 2);
 
 				servo_move( REAR_RIGHT_LEG,  b_forward, forward_wait );
+
 				servo_move( FRONT_LEFT_LEG,  f_forward, forward_wait );
 
 				servo_move( FRONT_RIGHT_LEG, f_back, back_wait );
@@ -213,6 +216,160 @@ int main()
 				
 				
 			}
+
+
+			// Turning Right
+			for( i=0; i < 6; i++ )
+			{
+				int up_wait = 0;
+				int forward_wait = 0;
+				int down_wait = 0;
+				int back_wait = 0;
+
+
+				// -------------------
+				servo_move( FRONT_LEFT_KNEE, f_up, up_wait );
+				servo_move( REAR_RIGHT_KNEE, b_up, up_wait );
+
+				servo_move( REAR_LEFT_KNEE, b_down, down_wait );
+				servo_move( FRONT_RIGHT_KNEE, f_down, down_wait );
+
+				change_wait( &wait ); delay_ms( wait / 2 );
+
+				servo_move( FRONT_LEFT_LEG,  f_back, forward_wait );
+				servo_move( REAR_RIGHT_LEG,  b_forward, forward_wait );
+
+				servo_move( FRONT_RIGHT_LEG,  f_back, back_wait );
+				servo_move( REAR_LEFT_LEG,  b_forward, back_wait );
+
+				change_wait( &wait ); delay_ms( wait );
+
+
+				// -------------------
+				// -------------------
+				servo_move( REAR_LEFT_KNEE, b_up, down_wait );
+				servo_move( FRONT_RIGHT_KNEE, f_up, down_wait );
+
+				servo_move( FRONT_LEFT_KNEE, f_down, up_wait );
+				servo_move( REAR_RIGHT_KNEE, b_down, up_wait );
+
+
+				change_wait( &wait ); delay_ms( wait / 2 );
+
+				servo_move( FRONT_LEFT_LEG,  f_forward, forward_wait );
+				servo_move( REAR_RIGHT_LEG,  b_back, forward_wait );
+
+				servo_move( FRONT_RIGHT_LEG,  f_forward, back_wait );
+				servo_move( REAR_LEFT_LEG,  b_back, back_wait );
+
+
+				change_wait( &wait ); delay_ms( wait );
+
+				// -------------------
+				
+				
+			}
+
+			// Walking backward
+			for( i=0; i < 6; i++ )
+			{
+				int up_wait = 0;
+				int forward_wait = 0;
+				int down_wait = 0;
+				int back_wait = 0;
+
+				// -------------------
+				servo_move( FRONT_RIGHT_KNEE, f_down, up_wait );
+				servo_move( REAR_LEFT_KNEE, b_down, up_wait );
+
+				servo_move( REAR_RIGHT_KNEE, b_up, down_wait );
+				servo_move( FRONT_LEFT_KNEE, f_up, down_wait );
+
+				change_wait( &wait ); delay_ms( wait / 2 );
+
+				servo_move( FRONT_RIGHT_LEG,  f_forward, forward_wait );
+				servo_move( REAR_LEFT_LEG,  b_forward, forward_wait );
+
+				servo_move( FRONT_LEFT_LEG,  f_back, back_wait );
+				servo_move( REAR_RIGHT_LEG,  b_back, back_wait );
+
+				change_wait( &wait ); delay_ms( wait );
+
+
+				// -------------------
+				servo_move( REAR_RIGHT_KNEE, b_down, up_wait );
+				servo_move( FRONT_LEFT_KNEE, f_down, up_wait );
+
+				servo_move( FRONT_RIGHT_KNEE, f_up, down_wait );
+				servo_move( REAR_LEFT_KNEE, b_up, down_wait );
+
+				change_wait( &wait ); delay_ms( wait / 2);
+
+				servo_move( REAR_RIGHT_LEG,  b_forward, forward_wait );
+				servo_move( FRONT_LEFT_LEG,  f_forward, forward_wait );
+
+				servo_move( FRONT_RIGHT_LEG, f_back, back_wait );
+				servo_move( REAR_LEFT_LEG,   b_back, back_wait );
+
+				change_wait( &wait ); delay_ms( wait );
+
+				// -------------------
+				
+				
+			}
+
+			// Turning Left
+			for( i=0; i < 6; i++ )
+			{
+				int up_wait = 0;
+				int forward_wait = 0;
+				int down_wait = 0;
+				int back_wait = 0;
+
+
+				// -------------------
+				servo_move( FRONT_RIGHT_KNEE, f_up, up_wait );
+				servo_move( REAR_LEFT_KNEE, b_up, up_wait );
+
+				servo_move( REAR_RIGHT_KNEE, b_down, down_wait );
+				servo_move( FRONT_LEFT_KNEE, f_down, down_wait );
+
+				change_wait( &wait ); delay_ms( wait / 2 );
+
+				servo_move( FRONT_RIGHT_LEG,  f_back, forward_wait );
+				servo_move( REAR_LEFT_LEG,  b_forward, forward_wait );
+
+				servo_move( FRONT_LEFT_LEG,  f_back, back_wait );
+				servo_move( REAR_RIGHT_LEG,  b_forward, back_wait );
+
+				change_wait( &wait ); delay_ms( wait );
+
+
+				// -------------------
+				// -------------------
+				servo_move( REAR_RIGHT_KNEE, b_up, down_wait );
+				servo_move( FRONT_LEFT_KNEE, f_up, down_wait );
+
+				servo_move( FRONT_RIGHT_KNEE, f_down, up_wait );
+				servo_move( REAR_LEFT_KNEE, b_down, up_wait );
+
+
+				change_wait( &wait ); delay_ms( wait / 2 );
+
+				servo_move( FRONT_RIGHT_LEG,  f_forward, forward_wait );
+				servo_move( REAR_LEFT_LEG,  b_back, forward_wait );
+
+				servo_move( FRONT_LEFT_LEG,  f_forward, back_wait );
+				servo_move( REAR_RIGHT_LEG,  b_back, back_wait );
+
+
+				change_wait( &wait ); delay_ms( wait );
+
+				// -------------------
+				
+				
+			}
+
 
 
 		}
